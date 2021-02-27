@@ -24,6 +24,14 @@ Lint/RaiseException:
   AllowedImplicitNamespaces:
     - 'Gem'
 
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: true
+  VersionAdded: '0.9'
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
 Style/HashEachMethods:
   Description: 'Use Hash#each_key and Hash#each_value.'
   StyleGuide: '#hash-each'

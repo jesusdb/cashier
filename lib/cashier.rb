@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'bigdecimal'
+require 'byebug'
+
 require_relative 'cashier/version'
 
 # Main module for the Cashier app
