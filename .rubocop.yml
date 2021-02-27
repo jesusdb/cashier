@@ -24,6 +24,24 @@ Lint/RaiseException:
   AllowedImplicitNamespaces:
     - 'Gem'
 
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: true
+  VersionAdded: '0.44'
+  VersionChanged: '1.5'
+  CountComments: false  # count full line comments?
+  Max: 25
+  CountAsOne: []
+  ExcludedMethods: [] # deprecated, retained for backwards compatibility
+  IgnoredMethods:
+    # By default, exclude the `#refine` method, as it tends to have larger
+    # associated blocks.
+    - refine
+  Exclude:
+    - '**/*.gemspec'
+    - 'spec/**/*'
+    - 'test/**/*'
+
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
   Enabled: true
