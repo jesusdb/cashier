@@ -11,6 +11,8 @@ module Cashier
     # starting_at_quantity - Defines the starting quantity where the discount will be applied.
     # item                 - The item to which the discount will be applied. It can
     #                        be an instance of Cashier::Item
+    # greedy               - Determines whether the discount will be applied only once (`false`) or each
+    #                        time the condition matches (`true`).
     def initialize(name, discount_percentage, starting_at_quantity, item, greedy)
       @name = name
       @discount_percentage = BigDecimal(discount_percentage.to_s) / 100.0
