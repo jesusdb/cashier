@@ -6,6 +6,7 @@ require 'byebug'
 require_relative 'cashier/version'
 require_relative 'cashier/product'
 require_relative 'cashier/pricing_rule'
+require_relative 'cashier/basket'
 
 # Main module for the Cashier app
 module Cashier
