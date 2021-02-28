@@ -20,13 +20,14 @@ RSpec.describe Cashier::Basket do
     end
 
     context 'when 2 or more items are added' do
-      before { 2.times { basket.add_item(item2) } }
+      before { many.times { basket.add_item(item2) } }
 
+      let(:many)   { rand(2..5) }
       let(:code2)  { 'SR1' }
       let(:price2) { 10.0 }
       let(:item2)  { double('item 2', code: code2, price: price2) }
-      let(:items2) { items1.merge({ code2 => 2 }) }
-      let(:total_price) { price1 + price2 * 2 }
+      let(:items2) { items1.merge({ code2 => many }) }
+      let(:total_price) { price1 + price2 * many }
 
       it { expect(basket.items).to eq items2 }
       it { expect(basket.total_price).to eq total_price }

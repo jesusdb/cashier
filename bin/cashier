@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+require './lib/cashier.rb'
+
+item  = Cashier::Item.new('GR1', 'Green Tea',    '3.11')
+item2 = Cashier::Item.new('SR1', 'Strawberries', '5.00')
+item3 = Cashier::Item.new('CF1', 'Coffee',       '11.23')
+
+pricing_rule = Cashier::PricingRule.new(
+  'Buy-one-get-one-free',
+  100.0 * (1 / 2.0), # Same as 50.0%
+  2,
+  item,
+  false
+)
+
+pricing_rule2 = Cashier::PricingRule.new(
+  '10% discount when having 3 or more strawberries',
+  10.0,
+  3,
+  item2,
+  true
+)
+
+pricing_rule3 = Cashier::PricingRule.new(
+  'Drop of price to two thirds of the original price when buying 3 or more coffees',
+  100.0 * (1 - 2 / 3.0), # Same as 33.33%...
+  3,
+  item3,
+  true
+)
+
+pricing_rules = Cashier::PricingRulesList.new(pricing_rule, pricing_rule2, pricing_rule3)
+
+# debugger
+# Cashier::Basket.new.validate_received_item('item')
+
+co = Cashier::Checkout.new(pricing_rules)
+co.scan(item)
+co.scan(item2)
+co.scan(item)
+co.scan(item)
+co.scan(item3)
+puts co.total.to_f
+
+co = Cashier::Checkout.new(pricing_rules)
+co.scan(item)
+co.scan(item)
+puts co.total.to_f
+
+co = Cashier::Checkout.new(pricing_rules)
+co.scan(item2)
+co.scan(item2)
+co.scan(item)
+co.scan(item2)
+puts co.total.to_f
+
+co = Cashier::Checkout.new(pricing_rules)
+co.scan(item)
+co.scan(item3)
+co.scan(item2)
+co.scan(item3)
+co.scan(item3)
+puts co.total.to_f

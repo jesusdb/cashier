@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Cashier
-  # This class defines the discount to be applied to a product.
+  # This class defines the discount to be applied to an item.
   class PricingRule
     attr_reader :name, :discount_percentage, :starting_at_quantity, :item, :greedy
 
