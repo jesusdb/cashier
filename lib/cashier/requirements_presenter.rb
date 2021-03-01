@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Cashier
+  # This Class is responsible for presenting the result of the requirements.
   class RequirementsPresenter
     ITEM_CODES  = %w[GR1 SR1 CF1].freeze
     ITEM_NAMES  = %w[Green\ Tea Strawberries Coffee].freeze
