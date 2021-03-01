@@ -7,10 +7,15 @@ module Cashier
 
     ATTRIBUTES_TO_VALIDATE = %w[code price].freeze
 
+    # Public: Validates the `item` with every `validate_*` method.
+    # item - The item to be validated.
+    #
+    # Returns `true` if the `item` is valid. If at least one validation method returns false`,
+    # this will return `false` as well.
     def valid_item?(item)
       self.class.public_instance_methods.grep(%r{(?!.*!)validate_.+}).map do |method|
         send(method, item)
-      end.any?
+      end.none?(false)
     end
 
     ATTRIBUTES_TO_VALIDATE.map do |attribute|
