@@ -3,7 +3,7 @@
 module Cashier
   # This class represents the basket where all the items are going to be added.
   class Basket
-    include Cashier::ItemValidator
+    include ItemValidator
 
     attr_reader :items, :size, :total_price
 
