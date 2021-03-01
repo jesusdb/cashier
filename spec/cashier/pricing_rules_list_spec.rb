@@ -18,6 +18,7 @@ RSpec.describe Cashier::PricingRulesList do
       allow(pricing_rule1).to receive(:discount).and_return discount1
       allow(pricing_rule2).to receive(:discount).and_return discount2
     end
+
     subject(:total_discounts) { pricing_rules_list.discounts(basket) }
 
     let(:items) { { code1 => 2, code2 => 1 } }

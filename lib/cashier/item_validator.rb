@@ -19,10 +19,16 @@ module Cashier
     end
 
     ATTRIBUTES_TO_VALIDATE.map do |attribute|
+      # Public: Checks if the `item` responds to a mandatory attribute.
+      #
+      # Returns `true` if valid, or raises an error otherwise.
       define_method "validate_presence_of_#{attribute}!" do |item|
         item.respond_to?(attribute) ? true : raise(InvalidItemError, "`item` should respond to #{attribute}")
       end
 
+      # Public: Checks if the `item` responds to a mandatory attribute.
+      #
+      # Returns `true` if valid, `false` otherwise.
       define_method "validate_presence_of_#{attribute}" do |item|
         send("validate_presence_of_#{attribute}!", item)
       rescue InvalidItemError

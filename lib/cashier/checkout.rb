@@ -16,6 +16,8 @@ module Cashier
 
     # Public: Scans the given `item`.
     # item - The item to be scanned.
+    #
+    # Returns `true` or `false`, depending on the `Basket#add_item` method.
     def scan(item)
       basket.add_item(item)
     end
