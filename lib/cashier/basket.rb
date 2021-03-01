@@ -16,6 +16,8 @@ module Cashier
     # Public: Adds one item to the `@items` hash and sums its price to the `@total_price`.
     # The `code` of the `item` points to an integer that determines the quantity of that item.
     # item - The item to be added.
+    #
+    # Returns `true` if the `item` is valid, `false` otherwise.
     def add_item(item)
       return false unless valid_item?(item)
 

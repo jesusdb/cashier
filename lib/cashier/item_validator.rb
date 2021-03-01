@@ -5,28 +5,24 @@ module Cashier
   module ItemValidator
     class InvalidItemError < StandardError; end
 
+    ATTRIBUTES_TO_VALIDATE = %w[code price].freeze
+
     def valid_item?(item)
-      [validate_code(item), validate_price(item)].none?(false)
+      self.class.public_instance_methods.grep(%r{(?!.*!)validate_.+}).map do |method|
+        send(method, item)
+      end.any?
     end
 
-    def validate_code!(item)
-      raise InvalidItemError, '`item` should respond to `code`' unless item.respond_to?(:code)
-    end
+    ATTRIBUTES_TO_VALIDATE.map do |attribute|
+      define_method "validate_presence_of_#{attribute}!" do |item|
+        item.respond_to?(attribute) ? true : raise(InvalidItemError, "`item` should respond to #{attribute}")
+      end
 
-    def validate_price!(item)
-      raise InvalidItemError, '`item` should respond to `price`' unless item.respond_to?(:price)
-    end
-
-    def validate_code(item)
-      validate_code!(item)
-    rescue InvalidItemError
-      false
-    end
-
-    def validate_price(item)
-      validate_price!(item)
-    rescue InvalidItemError
-      false
+      define_method "validate_presence_of_#{attribute}" do |item|
+        send("validate_presence_of_#{attribute}!", item)
+      rescue InvalidItemError
+        false
+      end
     end
   end
 end

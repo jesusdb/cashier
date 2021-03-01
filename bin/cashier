@@ -32,9 +32,6 @@ pricing_rule3 = Cashier::PricingRule.new(
 
 pricing_rules = Cashier::PricingRulesList.new(pricing_rule, pricing_rule2, pricing_rule3)
 
-# debugger
-# Cashier::Basket.new.validate_received_item('item')
-
 co = Cashier::Checkout.new(pricing_rules)
 co.scan(item)
 co.scan(item2)
