@@ -10,6 +10,7 @@ require_relative 'cashier/pricing_rules_list'
 require_relative 'cashier/item_validator'
 require_relative 'cashier/basket'
 require_relative 'cashier/checkout'
+require_relative 'cashier/requirements_presenter'
 
 # Main module for the Cashier app
 module Cashier
